@@ -24,13 +24,12 @@ app.get("/", function(req, res){
 
 
 //CPA
-app.get("/CPA", (req,res)=>{
-    data_prep.cpa().then((data)=>{
-        res.json(data);
-    }).catch((reason)=>{
-        res.json({message:reason});
-    });
-});
+app.get('/cpa', (req, res) => {
+    data_prep.cpa()
+        .then((data) => res.json(data))
+        .catch(err => console.log(err))
+})
+
 
 
 //High GPA
@@ -47,13 +46,13 @@ app.get("/highGPA", (req, res)=>{
 
 
 //get All Students
-app.get("/allStudents", (req, res) => {
-    data_Prep.allStudents().then(data => {
+app.get('/allStudents', (req, res) => {
+    data_prep.allStudents().then(data => {
         res.json(data)
-    }).catch((reason)=>{
-    res.json({message:reason});
+    })
+        .catch(err => console.log(err))
 })
-});
+
 
 //Add student
 app.get("/addStudent", (req, res) => {
@@ -89,18 +88,3 @@ app.get("/student/:studId", (req,res) => {
 app.get("*", (req, res)=>{
     res.status(404).send("Error 404: page not found.");
 });
-
-
-
-//PORT
-function onHttpStart() {
-    console.log("Express http server listening on: " + HTTP_PORT);
-};
-
-//prep()
-data_prep.prep()
-    .then(() => {
-        app.listen(HTTP_PORT, () => {
-            console.log(`Express http server listening on ${HTTP_PORT}`)
-        })
-    }).catch(err => console.log(err))
