@@ -48,7 +48,7 @@ module.exports.highGPA = ()=>{
 
 
 //get students
-exports.getStudent = (studId) => {
+module.exports.getStudent = (studId) => {
     return new Promise((resolve, reject) => {
         let student = []
         for (let index = 0; index < students.length; index++) {
@@ -62,7 +62,6 @@ exports.getStudent = (studId) => {
         }
     })
 }
-
 
 
 //Add Student
